@@ -1,0 +1,11 @@
+services:
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:${STACK_VERSION}
+    container_name: filebeat-container
+    environment:
+      - LOGSTASH_HOST: ${LOGSTASH_HOST}
+    command:
+      - --strict.perms=false
+    volumes:
+      - /home/ubuntu/xx-service/app/logs:/var/log/app/logs
+      - "./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro"
