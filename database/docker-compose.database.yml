@@ -1,0 +1,18 @@
+services:
+  postgres:
+    container_name: xx-service-database
+    image: postgres:15.1
+    environment:
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DATABASE}
+    ports:
+      - 5432:5432
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - xx-service-network
+
+networks:
+  xx-service-network:
+    driver: bridge
