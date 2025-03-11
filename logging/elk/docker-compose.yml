@@ -1,0 +1,14 @@
+volumes:
+  certs:
+    driver: local
+  esdata01:
+    driver: local
+  kibanadata:
+    driver: local
+  logstashdata01:
+    driver: local
+
+networks:
+  default:
+    name: elastic
+    external: false

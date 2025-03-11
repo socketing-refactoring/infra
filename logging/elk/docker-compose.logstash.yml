@@ -4,12 +4,16 @@ services:
     labels:
       co.elastic.logs/module: logstash
     user: root
+    ports:
+      - "5044:5044"
+      - "9600:9600"
     volumes:
       - certs:/usr/share/logstash/certs
       - logstashdata01:/usr/share/logstash/data
+      - "./logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro"
     environment:
       - xpack.monitoring.enabled=false
       - LS_PORT=${LS_PORT}
-      - ELASTIC_USER=elastic
+      - ELASTIC_USERNAME=${ELASTIC_USERNAME}
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       - ELASTIC_HOSTS=https://es01:9200
