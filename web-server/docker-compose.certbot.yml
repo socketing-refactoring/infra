@@ -1,0 +1,11 @@
+services:
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    entrypoint: >
+      sh -c "certbot certonly --webroot -w /var/www/certbot 
+      --email chris309804@naver.com --agree-tos --no-eff-email
+      -d api.socketing.jeein.xyz --force-renewal"
